@@ -8,25 +8,20 @@
 
 import UIKit
 
+protocol ReactiveViewControllerProtocol {
+    func updateWithViewModel(viewModel: ViewModelProtocol)
+}
+
 class ReactiveViewController<T: ViewModelProtocol>: UIViewController {
     
     // MARK: Properties
     
-    let viewModel: T
+    var viewModel: T!
     
     // MARK: API
     
-    init(viewModel: T, nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    func updateWithViewModel(viewModel: T) {
         self.viewModel = viewModel
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    convenience init(viewModel: T) {
-        self.init(viewModel: viewModel, nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     

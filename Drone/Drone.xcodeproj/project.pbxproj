@@ -31,6 +31,9 @@
 		D4CDCDD51DA9BE480065953A /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDD41DA9BE480065953A /* FirebaseDatabase.framework */; };
 		D4CDCDDD1DA9D2EA0065953A /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDDB1DA9D2CE0065953A /* DJISDK.framework */; };
 		D4CDCDDE1DA9D2EA0065953A /* DJISDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDDB1DA9D2CE0065953A /* DJISDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4CDCDE01DAA9F9E0065953A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDCDDF1DAA9F9E0065953A /* LoginViewController.swift */; };
+		D4CDCDE21DAAA0210065953A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDCDE11DAAA0210065953A /* LoginViewModel.swift */; };
+		D4CDCDE41DAAD89E0065953A /* SwiftLCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDE31DAAD89E0065953A /* SwiftLCS.framework */; };
 		D4F531421DA9B1CE0065CA56 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */; };
 		D4F531471DA9B1E60065CA56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531431DA9B1E60065CA56 /* AppDelegate.swift */; };
 		D4F531481DA9B1E60065CA56 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531441DA9B1E60065CA56 /* FirstViewController.swift */; };
@@ -107,6 +110,9 @@
 		D4CDCDD71DA9C0D90065953A /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Frameworks/Firebase/module.modulemap; sourceTree = SOURCE_ROOT; };
 		D4CDCDD81DA9C2110065953A /* Drone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Drone-Bridging-Header.h"; path = "Drone/Drone-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		D4CDCDDB1DA9D2CE0065953A /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DJISDK.framework; path = Frameworks/DJISDK.framework; sourceTree = "<group>"; };
+		D4CDCDDF1DAA9F9E0065953A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Drone/App/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4CDCDE11DAAA0210065953A /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = Drone/App/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
+		D4CDCDE31DAAD89E0065953A /* SwiftLCS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftLCS.framework; path = ../Carthage/Build/iOS/SwiftLCS.framework; sourceTree = "<group>"; };
 		D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabViewModel.swift; path = Drone/App/TabViewModel.swift; sourceTree = SOURCE_ROOT; };
 		D4F531431DA9B1E60065CA56 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Drone/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		D4F531441DA9B1E60065CA56 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstViewController.swift; path = Drone/FirstViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -142,6 +148,7 @@
 				D4CDCDCD1DA9BE320065953A /* GoogleInterchangeUtilities.framework in Frameworks */,
 				D4CDCDD21DA9BE3D0065953A /* FirebaseAuth.framework in Frameworks */,
 				D4587FB51D96E07500B928F1 /* Result.framework in Frameworks */,
+				D4CDCDE41DAAD89E0065953A /* SwiftLCS.framework in Frameworks */,
 				D4587FB61D96E07500B928F1 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +251,7 @@
 		D4587F921D96DA5600B928F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4CDCDE31DAAD89E0065953A /* SwiftLCS.framework */,
 				D4CDCDDB1DA9D2CE0065953A /* DJISDK.framework */,
 				D4CDCDD41DA9BE480065953A /* FirebaseDatabase.framework */,
 				D4CDCDD01DA9BE3D0065953A /* FirebaseAuth.framework */,
@@ -278,6 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */,
+				D4CDCDDF1DAA9F9E0065953A /* LoginViewController.swift */,
+				D4CDCDE11DAAA0210065953A /* LoginViewModel.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -462,6 +472,7 @@
 				"$(SRCROOT)/../Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/../Carthage/Build/iOS/ReactiveCocoa.framework",
 				"$(SRCROOT)/../Carthage/Build/iOS/SnapKit.framework",
+				"$(SRCROOT)/../Carthage/Build/iOS/SwiftLCS.framework",
 			);
 			name = "Carthage copy frameworks";
 			outputPaths = (
@@ -479,12 +490,14 @@
 			files = (
 				D4F531541DA9B21F0065CA56 /* ViewModelServices.swift in Sources */,
 				D4F5314C1DA9B1F50065CA56 /* Extensions.swift in Sources */,
+				D4CDCDE21DAAA0210065953A /* LoginViewModel.swift in Sources */,
 				D4F5314A1DA9B1E60065CA56 /* SecondViewController.swift in Sources */,
 				D4F531531DA9B21F0065CA56 /* NavigationEvent.swift in Sources */,
 				D4F531481DA9B1E60065CA56 /* FirstViewController.swift in Sources */,
 				D4F531471DA9B1E60065CA56 /* AppDelegate.swift in Sources */,
 				D4F531421DA9B1CE0065CA56 /* TabViewModel.swift in Sources */,
 				D4F5314F1DA9B2060065CA56 /* ReactiveViewController.swift in Sources */,
+				D4CDCDE01DAA9F9E0065953A /* LoginViewController.swift in Sources */,
 				D4F531501DA9B2060065CA56 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

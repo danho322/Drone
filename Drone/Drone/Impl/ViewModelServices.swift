@@ -13,7 +13,8 @@ protocol ViewModelServicesDelegate: class {
 }
 
 protocol ViewModelServicesProtocol {
-    
+    func push(viewModel: ViewModelProtocol)
+    func pop(viewModel: ViewModelProtocol)
 }
 
 class ViewModelServices: NSObject, ViewModelServicesProtocol {
