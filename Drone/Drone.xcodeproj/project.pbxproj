@@ -10,12 +10,25 @@
 		D4587F701D95812600B928F1 /* BabyMoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4587F6F1D95812600B928F1 /* BabyMoodTests.swift */; };
 		D4587F7B1D95812600B928F1 /* BabyMoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4587F7A1D95812600B928F1 /* BabyMoodUITests.swift */; };
 		D4587FB21D96E07400B928F1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FAD1D96E07400B928F1 /* ReactiveCocoa.framework */; };
-		D4587FB31D96E07500B928F1 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FAE1D96E07400B928F1 /* Realm.framework */; };
-		D4587FB41D96E07500B928F1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FAF1D96E07400B928F1 /* RealmSwift.framework */; };
 		D4587FB51D96E07500B928F1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FB01D96E07400B928F1 /* Result.framework */; };
 		D4587FB61D96E07500B928F1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FB11D96E07400B928F1 /* SnapKit.framework */; };
 		D4CDCD761DA9B3200065953A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CDCD721DA9B3200065953A /* LaunchScreen.storyboard */; };
 		D4CDCD771DA9B3200065953A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CDCD741DA9B3200065953A /* Main.storyboard */; };
+		D4CDCDB71DA9B70D0065953A /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDB61DA9B70D0065953A /* libicucore.tbd */; };
+		D4CDCDB91DA9B7170065953A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDB81DA9B7170065953A /* libc++.tbd */; };
+		D4CDCDBB1DA9B71C0065953A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDBA1DA9B71C0065953A /* CFNetwork.framework */; };
+		D4CDCDBD1DA9B7210065953A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDBC1DA9B7210065953A /* Security.framework */; };
+		D4CDCDBF1DA9B7280065953A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDBE1DA9B7280065953A /* SystemConfiguration.framework */; };
+		D4CDCDC31DA9B8560065953A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4CDCDC21DA9B8560065953A /* GoogleService-Info.plist */; };
+		D4CDCDCA1DA9BE320065953A /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDC41DA9BE320065953A /* FirebaseAnalytics.framework */; };
+		D4CDCDCB1DA9BE320065953A /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDC51DA9BE320065953A /* FirebaseCore.framework */; };
+		D4CDCDCC1DA9BE320065953A /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDC61DA9BE320065953A /* FirebaseInstanceID.framework */; };
+		D4CDCDCD1DA9BE320065953A /* GoogleInterchangeUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDC71DA9BE320065953A /* GoogleInterchangeUtilities.framework */; };
+		D4CDCDCE1DA9BE320065953A /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDC81DA9BE320065953A /* GoogleSymbolUtilities.framework */; };
+		D4CDCDCF1DA9BE320065953A /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDC91DA9BE320065953A /* GoogleUtilities.framework */; };
+		D4CDCDD21DA9BE3D0065953A /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDD01DA9BE3D0065953A /* FirebaseAuth.framework */; };
+		D4CDCDD31DA9BE3D0065953A /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDD11DA9BE3D0065953A /* GoogleNetworkingUtilities.framework */; };
+		D4CDCDD51DA9BE480065953A /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDD41DA9BE480065953A /* FirebaseDatabase.framework */; };
 		D4F531421DA9B1CE0065CA56 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */; };
 		D4F531471DA9B1E60065CA56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531431DA9B1E60065CA56 /* AppDelegate.swift */; };
 		D4F531481DA9B1E60065CA56 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531441DA9B1E60065CA56 /* FirstViewController.swift */; };
@@ -68,14 +81,28 @@
 		D4587F7A1D95812600B928F1 /* BabyMoodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMoodUITests.swift; sourceTree = "<group>"; };
 		D4587F7C1D95812600B928F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4587FAD1D96E07400B928F1 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
-		D4587FAE1D96E07400B928F1 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = ../Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		D4587FAF1D96E07400B928F1 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = ../Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		D4587FB01D96E07400B928F1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		D4587FB11D96E07400B928F1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		D4CDCD731DA9B3200065953A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Drone/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		D4CDCD751DA9B3200065953A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Drone/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
-		D4CDCD961DA9B4380065953A /* Drone copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Drone copy-Info.plist"; path = "/Users/DanielHo/Drone/Drone/Drone copy-Info.plist"; sourceTree = "<absolute>"; };
-		D4CDCDB31DA9B45A0065953A /* Drone1 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Drone1 copy-Info.plist"; path = "/Users/DanielHo/Drone/Drone/Drone1 copy-Info.plist"; sourceTree = "<absolute>"; };
+		D4CDCDB61DA9B70D0065953A /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		D4CDCDB81DA9B7170065953A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		D4CDCDBA1DA9B71C0065953A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D4CDCDBC1DA9B7210065953A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D4CDCDBE1DA9B7280065953A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D4CDCDC21DA9B8560065953A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Drone/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D4CDCDC41DA9BE320065953A /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/Firebase/Analytics/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		D4CDCDC51DA9BE320065953A /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/Firebase/Analytics/FirebaseCore.framework; sourceTree = "<group>"; };
+		D4CDCDC61DA9BE320065953A /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/Firebase/Analytics/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		D4CDCDC71DA9BE320065953A /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/Firebase/Analytics/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		D4CDCDC81DA9BE320065953A /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/Firebase/Analytics/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
+		D4CDCDC91DA9BE320065953A /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/Firebase/Analytics/GoogleUtilities.framework; sourceTree = "<group>"; };
+		D4CDCDD01DA9BE3D0065953A /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = Frameworks/Firebase/Auth/FirebaseAuth.framework; sourceTree = "<group>"; };
+		D4CDCDD11DA9BE3D0065953A /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = Frameworks/Firebase/Auth/GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
+		D4CDCDD41DA9BE480065953A /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = Frameworks/Firebase/Database/FirebaseDatabase.framework; sourceTree = "<group>"; };
+		D4CDCDD61DA9C0B10065953A /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Frameworks/Firebase/Firebase.h; sourceTree = SOURCE_ROOT; };
+		D4CDCDD71DA9C0D90065953A /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = Frameworks/Firebase/module.modulemap; sourceTree = SOURCE_ROOT; };
+		D4CDCDD81DA9C2110065953A /* Drone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Drone-Bridging-Header.h"; path = "Drone/Drone-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabViewModel.swift; path = Drone/App/TabViewModel.swift; sourceTree = SOURCE_ROOT; };
 		D4F531431DA9B1E60065CA56 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Drone/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		D4F531441DA9B1E60065CA56 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstViewController.swift; path = Drone/FirstViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -94,9 +121,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CDCDD51DA9BE480065953A /* FirebaseDatabase.framework in Frameworks */,
+				D4CDCDD31DA9BE3D0065953A /* GoogleNetworkingUtilities.framework in Frameworks */,
+				D4CDCDBF1DA9B7280065953A /* SystemConfiguration.framework in Frameworks */,
+				D4CDCDBD1DA9B7210065953A /* Security.framework in Frameworks */,
+				D4CDCDCA1DA9BE320065953A /* FirebaseAnalytics.framework in Frameworks */,
+				D4CDCDBB1DA9B71C0065953A /* CFNetwork.framework in Frameworks */,
+				D4CDCDCE1DA9BE320065953A /* GoogleSymbolUtilities.framework in Frameworks */,
+				D4CDCDCC1DA9BE320065953A /* FirebaseInstanceID.framework in Frameworks */,
+				D4CDCDCF1DA9BE320065953A /* GoogleUtilities.framework in Frameworks */,
+				D4CDCDB91DA9B7170065953A /* libc++.tbd in Frameworks */,
+				D4CDCDB71DA9B70D0065953A /* libicucore.tbd in Frameworks */,
+				D4CDCDCB1DA9BE320065953A /* FirebaseCore.framework in Frameworks */,
 				D4587FB21D96E07400B928F1 /* ReactiveCocoa.framework in Frameworks */,
-				D4587FB31D96E07500B928F1 /* Realm.framework in Frameworks */,
-				D4587FB41D96E07500B928F1 /* RealmSwift.framework in Frameworks */,
+				D4CDCDCD1DA9BE320065953A /* GoogleInterchangeUtilities.framework in Frameworks */,
+				D4CDCDD21DA9BE3D0065953A /* FirebaseAuth.framework in Frameworks */,
 				D4587FB51D96E07500B928F1 /* Result.framework in Frameworks */,
 				D4587FB61D96E07500B928F1 /* SnapKit.framework in Frameworks */,
 			);
@@ -127,8 +166,6 @@
 				D4587F791D95812600B928F1 /* DroneUITests */,
 				D4587F561D95812600B928F1 /* Products */,
 				D4587F921D96DA5600B928F1 /* Frameworks */,
-				D4CDCD961DA9B4380065953A /* Drone copy-Info.plist */,
-				D4CDCDB31DA9B45A0065953A /* Drone1 copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,6 +182,7 @@
 		D4587F571D95812600B928F1 /* Drone */ = {
 			isa = PBXGroup;
 			children = (
+				D4CDCDD91DA9C3670065953A /* Libraries */,
 				D4CDCD791DA9B35C0065953A /* Resources */,
 				D4CDCD781DA9B34E0065953A /* UI */,
 				D4F531431DA9B1E60065CA56 /* AppDelegate.swift */,
@@ -201,9 +239,21 @@
 		D4587F921D96DA5600B928F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4CDCDD41DA9BE480065953A /* FirebaseDatabase.framework */,
+				D4CDCDD01DA9BE3D0065953A /* FirebaseAuth.framework */,
+				D4CDCDD11DA9BE3D0065953A /* GoogleNetworkingUtilities.framework */,
+				D4CDCDC41DA9BE320065953A /* FirebaseAnalytics.framework */,
+				D4CDCDC51DA9BE320065953A /* FirebaseCore.framework */,
+				D4CDCDC61DA9BE320065953A /* FirebaseInstanceID.framework */,
+				D4CDCDC71DA9BE320065953A /* GoogleInterchangeUtilities.framework */,
+				D4CDCDC81DA9BE320065953A /* GoogleSymbolUtilities.framework */,
+				D4CDCDC91DA9BE320065953A /* GoogleUtilities.framework */,
+				D4CDCDBE1DA9B7280065953A /* SystemConfiguration.framework */,
+				D4CDCDBC1DA9B7210065953A /* Security.framework */,
+				D4CDCDBA1DA9B71C0065953A /* CFNetwork.framework */,
+				D4CDCDB81DA9B7170065953A /* libc++.tbd */,
+				D4CDCDB61DA9B70D0065953A /* libicucore.tbd */,
 				D4587FAD1D96E07400B928F1 /* ReactiveCocoa.framework */,
-				D4587FAE1D96E07400B928F1 /* Realm.framework */,
-				D4587FAF1D96E07400B928F1 /* RealmSwift.framework */,
 				D4587FB01D96E07400B928F1 /* Result.framework */,
 				D4587FB11D96E07400B928F1 /* SnapKit.framework */,
 			);
@@ -238,9 +288,28 @@
 		D4CDCD791DA9B35C0065953A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4CDCDD81DA9C2110065953A /* Drone-Bridging-Header.h */,
 				D4F531551DA9B23B0065CA56 /* Assets.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		D4CDCDD91DA9C3670065953A /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				D4CDCDDA1DA9C36E0065953A /* Firebase */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		D4CDCDDA1DA9C36E0065953A /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				D4CDCDD61DA9C0B10065953A /* Firebase.h */,
+				D4CDCDD71DA9C0D90065953A /* module.modulemap */,
+				D4CDCDC21DA9B8560065953A /* GoogleService-Info.plist */,
+			);
+			name = Firebase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,6 +424,7 @@
 			files = (
 				D4CDCD761DA9B3200065953A /* LaunchScreen.storyboard in Resources */,
 				D4F531561DA9B23B0065CA56 /* Assets.xcassets in Resources */,
+				D4CDCDC31DA9B8560065953A /* GoogleService-Info.plist in Resources */,
 				D4F531491DA9B1E60065CA56 /* Info.plist in Resources */,
 				D4CDCD771DA9B3200065953A /* Main.storyboard in Resources */,
 			);
@@ -385,8 +455,6 @@
 			inputPaths = (
 				"$(SRCROOT)/../Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/../Carthage/Build/iOS/ReactiveCocoa.framework",
-				"$(SRCROOT)/../Carthage/Build/iOS/RealmSwift.framework",
-				"$(SRCROOT)/../Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/../Carthage/Build/iOS/SnapKit.framework",
 			);
 			name = "Carthage copy frameworks";
@@ -509,11 +577,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Drone/Drone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/";
 			};
 			name = Debug;
 		};
@@ -553,10 +624,13 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Drone/Drone-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -566,7 +640,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Drone/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/Firebase/Analytics",
+					"$(PROJECT_DIR)/Frameworks/Firebase/Auth",
+					"$(PROJECT_DIR)/Frameworks/Firebase/Database",
+				);
 				INFOPLIST_FILE = Drone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.worthlessapps.Drone;
@@ -581,7 +661,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../Carthage/Build/iOS";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Drone/Frameworks",
+					"$(PROJECT_DIR)/Frameworks/Firebase/Analytics",
+					"$(PROJECT_DIR)/Frameworks/Firebase/Auth",
+					"$(PROJECT_DIR)/Frameworks/Firebase/Database",
+				);
 				INFOPLIST_FILE = Drone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.worthlessapps.Drone;

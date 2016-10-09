@@ -37,6 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate
         navigationStack.push(rootNavigationController)
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
+        
+        // Use Firebase library to configure APIs
+        FIRApp.configure()
+        
         return true
     }
 
