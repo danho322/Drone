@@ -10,5 +10,6 @@
 #define Drone_Bridging_Header_h
 
 #import "Firebase.h"
+#import <DJISDK/DJISDK.h>
 
 #endif /* Drone_Bridging_Header_h */

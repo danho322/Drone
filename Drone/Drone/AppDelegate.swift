@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate, DJISDKManagerDelegate {
 
     var window: UIWindow?
     var services: ViewModelServicesProtocol?
@@ -38,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
         
-        // Use Firebase library to configure APIs
         FIRApp.configure()
+        DJISDKManager.registerApp("8e89542e23d22645274bd708", withDelegate: self)
         
         return true
     }
@@ -104,6 +104,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate
         let navc = UINavigationController(rootViewController: vc)
         navc.navigationBar.translucent = false
         return navc
+    }
+    
+    // MARK: DJISDKManagerDelegate
+    
+    func sdkManagerDidRegisterAppWithError(error: NSError?) {
+        print("DJI register error")
     }
 
 }
