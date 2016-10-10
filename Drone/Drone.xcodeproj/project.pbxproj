@@ -285,9 +285,8 @@
 		D4B922711D9898F00011C118 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D4CDCDE51DAAF51D0065953A /* Login */,
 				D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */,
-				D4CDCDDF1DAA9F9E0065953A /* LoginViewController.swift */,
-				D4CDCDE11DAAA0210065953A /* LoginViewModel.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -326,6 +325,15 @@
 				D4CDCDC21DA9B8560065953A /* GoogleService-Info.plist */,
 			);
 			name = Firebase;
+			sourceTree = "<group>";
+		};
+		D4CDCDE51DAAF51D0065953A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D4CDCDDF1DAA9F9E0065953A /* LoginViewController.swift */,
+				D4CDCDE11DAAA0210065953A /* LoginViewModel.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

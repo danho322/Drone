@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import ReactiveCocoa
+import Result
 
 // Treat an array as a stack.
 extension Array {
@@ -27,5 +29,13 @@ extension Array {
     
     func peekAtStack() -> Element? {
         return self.last
+    }
+}
+
+extension UITextField {
+    var rex_text: SignalProducer<String, NoError> {
+        return self.rac_textSignal().toSignalProducer()
+            .map { $0 as? String ?? "" }
+            .flatMapError { _ in SignalProducer<String, NoError>.empty }
     }
 }

@@ -60,7 +60,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xiw-mf-ABT">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Headline" textLabel="CrO-dt-khq" style="IBUITableViewCellStyleDefault" id="bwZ-xW-MDV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Headline" textLabel="CrO-dt-khq" style="IBUITableViewCellStyleDefault" id="bwZ-xW-MDV" customClass="HeadlineTableViewCell" customModule="Drone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bwZ-xW-MDV" id="7XX-7U-mEs">
@@ -76,91 +76,146 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="CrO-dt-khq" id="V60-km-1Uq"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmailTextField" textLabel="dVy-ZL-Mwg" style="IBUITableViewCellStyleDefault" id="jtY-jz-pJA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmailTextField" id="jtY-jz-pJA" customClass="EmailTableViewCell" customModule="Drone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jtY-jz-pJA" id="HIA-AB-sdN">
                                             <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dVy-ZL-Mwg">
-                                                    <frame key="frameInset" minX="15" width="313" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oP6-w7-COW">
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="oP6-w7-COW" secondAttribute="bottom" id="11M-eO-haP"/>
+                                                <constraint firstItem="oP6-w7-COW" firstAttribute="leading" secondItem="HIA-AB-sdN" secondAttribute="leadingMargin" id="TOQ-G0-HI7"/>
+                                                <constraint firstItem="oP6-w7-COW" firstAttribute="top" secondItem="HIA-AB-sdN" secondAttribute="topMargin" id="rHq-ee-6mN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oP6-w7-COW" secondAttribute="trailing" id="zQG-Rw-LUq"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="oP6-w7-COW" id="CHj-Mh-6lf"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NameTextField" textLabel="Hc0-0G-reS" style="IBUITableViewCellStyleDefault" id="E6b-k0-2LS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NameTextField" id="E6b-k0-2LS" customClass="NameTableViewCell" customModule="Drone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E6b-k0-2LS" id="cXj-d3-Cer">
                                             <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hc0-0G-reS">
-                                                    <frame key="frameInset" minX="15" width="313" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Iv-E7-5Rt">
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad"/>
+                                                </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0Iv-E7-5Rt" secondAttribute="trailing" id="2NT-DY-5Y3"/>
+                                                <constraint firstItem="0Iv-E7-5Rt" firstAttribute="top" secondItem="cXj-d3-Cer" secondAttribute="topMargin" id="Bow-Bv-WX2"/>
+                                                <constraint firstItem="0Iv-E7-5Rt" firstAttribute="leading" secondItem="cXj-d3-Cer" secondAttribute="leadingMargin" id="Hxe-wE-c8e"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="0Iv-E7-5Rt" secondAttribute="bottom" id="fae-eY-sBH"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="0Iv-E7-5Rt" id="49Q-WW-veL"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PasswordTextField" textLabel="H50-Wx-Eee" style="IBUITableViewCellStyleDefault" id="tG0-I9-sRt">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PasswordTextField" id="tG0-I9-sRt" customClass="PasswordTableViewCell" customModule="Drone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="160" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tG0-I9-sRt" id="3Ux-Ul-47g">
                                             <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H50-Wx-Eee">
-                                                    <frame key="frameInset" minX="15" width="313" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="emu-rG-OZJ">
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="emu-rG-OZJ" firstAttribute="leading" secondItem="3Ux-Ul-47g" secondAttribute="leadingMargin" id="2wA-ly-NvJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="emu-rG-OZJ" secondAttribute="trailing" id="Fuq-CH-3iU"/>
+                                                <constraint firstItem="emu-rG-OZJ" firstAttribute="top" secondItem="3Ux-Ul-47g" secondAttribute="topMargin" id="bv2-Sl-Jee"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="emu-rG-OZJ" secondAttribute="bottom" id="wtt-dK-we8"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="emu-rG-OZJ" id="69S-pq-94J"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoginButton" textLabel="iiL-bv-je8" style="IBUITableViewCellStyleDefault" id="y0M-Cw-VpB">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmitButton" id="y0M-Cw-VpB" customClass="SubmitTableViewCell" customModule="Drone" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="204" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y0M-Cw-VpB" id="nvD-dR-fcR">
                                             <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iiL-bv-je8">
-                                                    <frame key="frameInset" minX="15" width="313" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCk-2w-vKa">
+                                                    <state key="normal" title="Submit"/>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wCk-2w-vKa" secondAttribute="trailing" id="Dpj-nq-Dfn"/>
+                                                <constraint firstItem="wCk-2w-vKa" firstAttribute="top" secondItem="nvD-dR-fcR" secondAttribute="topMargin" id="Jme-wU-CdB"/>
+                                                <constraint firstItem="wCk-2w-vKa" firstAttribute="leading" secondItem="nvD-dR-fcR" secondAttribute="leadingMargin" id="LmS-AP-veL"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wCk-2w-vKa" secondAttribute="bottom" id="Q4i-8q-vgt"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="submitButton" destination="wCk-2w-vKa" id="b3y-GF-z09"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Separator" textLabel="gCy-Ca-c78" style="IBUITableViewCellStyleDefault" id="jWX-9I-XGU">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Separator" id="jWX-9I-XGU">
                                         <rect key="frame" x="0.0" y="248" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jWX-9I-XGU" id="317-xT-5uc">
                                             <frame key="frameInset" width="343" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Separator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gCy-Ca-c78">
-                                                    <frame key="frameInset" minX="15" width="313" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OC6-Vm-UNr">
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="UO7-1w-c5d"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OC6-Vm-UNr" firstAttribute="leading" secondItem="317-xT-5uc" secondAttribute="leadingMargin" constant="10" id="8aO-gy-OIf"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="OC6-Vm-UNr" secondAttribute="trailing" constant="10" id="Iec-2z-Ofm"/>
+                                                <constraint firstItem="OC6-Vm-UNr" firstAttribute="centerY" secondItem="317-xT-5uc" secondAttribute="centerY" id="imJ-p0-66e"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToggleState" id="aQg-gc-ECc" userLabel="ToggleState" customClass="ToggleTableViewCell" customModule="Drone" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="292" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aQg-gc-ECc" id="wtu-i7-zan">
+                                            <frame key="frameInset" width="343" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vp2-Ay-luC">
+                                                    <state key="normal" title="Submit"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vp2-Ay-luC" secondAttribute="trailing" id="6vV-bI-Gpg"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="vp2-Ay-luC" secondAttribute="bottom" id="9G3-8h-vnb"/>
+                                                <constraint firstItem="vp2-Ay-luC" firstAttribute="top" secondItem="wtu-i7-zan" secondAttribute="topMargin" id="YSW-EB-uSP"/>
+                                                <constraint firstItem="vp2-Ay-luC" firstAttribute="leading" secondItem="wtu-i7-zan" secondAttribute="leadingMargin" id="boW-Sc-ecc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="submitButton" destination="vp2-Ay-luC" id="ghq-dm-Zyf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

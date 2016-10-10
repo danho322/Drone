@@ -7,17 +7,30 @@
 //
 
 import Foundation
+import ReactiveCocoa
 
 protocol ViewModelProtocol {
     var services: ViewModelServicesProtocol { get }
+    var disposables: [Disposable] { get set }
 }
 
 class ViewModel: NSObject, ViewModelProtocol {
     
     let services: ViewModelServicesProtocol
+    var disposables: [Disposable] = []
     
     init(services: ViewModelServicesProtocol) {
         self.services = services
         super.init()
+    }
+    
+    func disposeAll() {
+        for disposable in disposables {
+            disposable.dispose()
+        }
+    }
+    
+    deinit {
+        disposeAll()
     }
 }
