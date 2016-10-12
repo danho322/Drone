@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Drone/App/LoginViewModel.swift"
-            timestampString = "497809010.690324"
+            filePath = "Drone/App/MapSetupViewController.swift"
+            timestampString = "497943717.81703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "executeLogin()"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "addAnnotation(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Drone/App/MapSetupViewController.swift"
+            timestampString = "497943718.929918"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "mapView(_:rendererForOverlay:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

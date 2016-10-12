@@ -47,14 +47,16 @@ enum NavigationEvent {
     
     init(_ viewModel: ViewModelProtocol) {
         
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         if let vm = viewModel as? LoginViewModel {
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let loginVC = LoginViewController.instantiateFromStoryboard(storyBoard)
             loginVC.updateWithViewModel(vm)
             self = .Push(loginVC, .Push)
-        }/* else if let vm = viewModel as? CreateTodoViewModel {
-            self = .Push(CreateTodoViewController(viewModel: vm), .Modal)
-        }*/ else {
+        } else if let vm = viewModel as? MapSetupViewModel {
+            let mapVC = MapSetupViewController.instantiateFromStoryboard(storyBoard)
+            mapVC.updateWithViewModel(vm)
+            self = .Push(mapVC, .Push)
+        } else {
             self = .Push(UIViewController(), .Push)
         }
     }

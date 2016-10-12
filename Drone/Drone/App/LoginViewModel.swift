@@ -66,10 +66,13 @@ class LoginViewModel: ViewModel {
     }
     
     func executeSignup() {
-        FIRAuth.auth()?.createUserWithEmail(emailInput.value, password: passwordInput.value) { user, error in
-            if error == nil {
-                self.executeLogin()
-            }
-        }
+        let vm = MapSetupViewModel(services: services)
+        services.push(vm)
+        
+//        FIRAuth.auth()?.createUserWithEmail(emailInput.value, password: passwordInput.value) { user, error in
+//            if error == nil {
+//                self.executeLogin()
+//            }
+//        }
     }
 }

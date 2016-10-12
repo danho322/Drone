@@ -34,6 +34,9 @@
 		D4CDCDE01DAA9F9E0065953A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDCDDF1DAA9F9E0065953A /* LoginViewController.swift */; };
 		D4CDCDE21DAAA0210065953A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDCDE11DAAA0210065953A /* LoginViewModel.swift */; };
 		D4CDCDE41DAAD89E0065953A /* SwiftLCS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDE31DAAD89E0065953A /* SwiftLCS.framework */; };
+		D4CDCDE81DADDF320065953A /* MapSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDCDE71DADDF320065953A /* MapSetupViewController.swift */; };
+		D4CDCDEA1DADDF690065953A /* MapSetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CDCDE91DADDF690065953A /* MapSetupViewModel.swift */; };
+		D4CDCDEC1DADFE2F0065953A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDEB1DADFE2F0065953A /* MapKit.framework */; };
 		D4F531421DA9B1CE0065CA56 /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */; };
 		D4F531471DA9B1E60065CA56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531431DA9B1E60065CA56 /* AppDelegate.swift */; };
 		D4F531481DA9B1E60065CA56 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531441DA9B1E60065CA56 /* FirstViewController.swift */; };
@@ -113,6 +116,9 @@
 		D4CDCDDF1DAA9F9E0065953A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Drone/App/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4CDCDE11DAAA0210065953A /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = Drone/App/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		D4CDCDE31DAAD89E0065953A /* SwiftLCS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftLCS.framework; path = ../Carthage/Build/iOS/SwiftLCS.framework; sourceTree = "<group>"; };
+		D4CDCDE71DADDF320065953A /* MapSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSetupViewController.swift; path = Drone/App/MapSetupViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4CDCDE91DADDF690065953A /* MapSetupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapSetupViewModel.swift; path = Drone/App/MapSetupViewModel.swift; sourceTree = SOURCE_ROOT; };
+		D4CDCDEB1DADFE2F0065953A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabViewModel.swift; path = Drone/App/TabViewModel.swift; sourceTree = SOURCE_ROOT; };
 		D4F531431DA9B1E60065CA56 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Drone/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		D4F531441DA9B1E60065CA56 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstViewController.swift; path = Drone/FirstViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -131,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CDCDEC1DADFE2F0065953A /* MapKit.framework in Frameworks */,
 				D4CDCDD51DA9BE480065953A /* FirebaseDatabase.framework in Frameworks */,
 				D4CDCDD31DA9BE3D0065953A /* GoogleNetworkingUtilities.framework in Frameworks */,
 				D4CDCDBF1DA9B7280065953A /* SystemConfiguration.framework in Frameworks */,
@@ -251,6 +258,7 @@
 		D4587F921D96DA5600B928F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4CDCDEB1DADFE2F0065953A /* MapKit.framework */,
 				D4CDCDE31DAAD89E0065953A /* SwiftLCS.framework */,
 				D4CDCDDB1DA9D2CE0065953A /* DJISDK.framework */,
 				D4CDCDD41DA9BE480065953A /* FirebaseDatabase.framework */,
@@ -285,6 +293,7 @@
 		D4B922711D9898F00011C118 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D4CDCDE61DADDEEA0065953A /* Map */,
 				D4CDCDE51DAAF51D0065953A /* Login */,
 				D4F531411DA9B1CE0065CA56 /* TabViewModel.swift */,
 			);
@@ -334,6 +343,15 @@
 				D4CDCDE11DAAA0210065953A /* LoginViewModel.swift */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		D4CDCDE61DADDEEA0065953A /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D4CDCDE71DADDF320065953A /* MapSetupViewController.swift */,
+				D4CDCDE91DADDF690065953A /* MapSetupViewModel.swift */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -496,7 +514,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4CDCDEA1DADDF690065953A /* MapSetupViewModel.swift in Sources */,
 				D4F531541DA9B21F0065CA56 /* ViewModelServices.swift in Sources */,
+				D4CDCDE81DADDF320065953A /* MapSetupViewController.swift in Sources */,
 				D4F5314C1DA9B1F50065CA56 /* Extensions.swift in Sources */,
 				D4CDCDE21DAAA0210065953A /* LoginViewModel.swift in Sources */,
 				D4F5314A1DA9B1E60065CA56 /* SecondViewController.swift in Sources */,
