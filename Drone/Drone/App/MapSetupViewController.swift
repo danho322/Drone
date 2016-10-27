@@ -20,18 +20,78 @@ class FieldBoundaryAnnotation: NSObject, MKAnnotation {
     }
 }
 
-class FieldMapOverlayView: MKOverlayRenderer {
+protocol LongPressSelectableDelegate {
+    func onLongPressConfirm()
+}
+
+protocol LongPressSelectable {
+    func addPressGesture()
+    func handleLongPress(gestureRecognizer: UIGestureRecognizer)
+    var delegate: LongPressSelectableDelegate { get }
+}
+
+extension LongPressSelectable {
     
-//    override func drawMapRect(mapRect: MKMapRect, zoomScale: MKZoomScale, inContext context: CGContext!) {
-//        let imageReference = overlayImage.CGImage
+    
+}
+
+class FieldMapAnnotationView: MKAnnotationView, LongPressSelectable {
+    var delegate: LongPressSelectableDelegate
+    
+    init(annotation: MKAnnotation, delegate: LongPressSelectableDelegate) {
+        self.delegate = delegate
+        super.init(annotation: annotation, reuseIdentifier: "FieldMapAnnotationView")
+        self.annotation = annotation
+        self.image = UIImage(named: "cone")
+        draggable = true
+//        canShowCallout = true
+        
+        // button as callout accessory
+//        let deleteButton = UIButton(type: UIButtonType.Custom) as UIButton
+//        deleteButton.frame.size.width = 44
+//        deleteButton.frame.size.height = 44
+//        deleteButton.backgroundColor = UIColor.redColor()
+//        deleteButton.setImage(UIImage(named: "trash"), forState: .Normal)
+
+//        let callout = UIView(frame: CGRectMake(0, 0, 30, 30))
+//        callout.backgroundColor = UIColor.redColor()
 //        
-//        let theMapRect = overlay.boundingMapRect
-//        let theRect = self.rectForMapRect(theMapRect)
-//        
-//        CGContextScaleCTM(context, 1.0, -1.0)
-//        CGContextTranslateCTM(context, 0.0, -theRect.size.height)
-//        CGContextDrawImage(context, theRect, imageReference)
+//        leftCalloutAccessoryView = callout
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+ 
+    func addPressGesture() {
+        let press = UILongPressGestureRecognizer(target: self, action: #selector(FieldMapAnnotationView.handleLongPress))
+        press.minimumPressDuration = 1.0
+        self.addGestureRecognizer(press)
+    }
+    
+    func handleLongPress(gestureRecognizer: UIGestureRecognizer) {
+        if gestureRecognizer.state != .Began {
+            return
+        }
+        
+        delegate.onLongPressConfirm()
+    }
+}
+
+class FieldOverlay: MKPolygon {
+//    override var coordinate: CLLocationCoordinate2D {
+//        return self.coordinate
 //    }
+    override var boundingMapRect: MKMapRect {
+        return MKMapRectWorld
+    }
+}
+
+class FieldOverlayRenderer: MKPolygonRenderer {
+    var boundingMapRect: MKMapRect {
+        return MKMapRectWorld
+    }
 }
 
 class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapViewDelegate {
@@ -67,25 +127,54 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
         
         let annotations = mapView.annotations
         if (annotations.count == 4) {
-//            let topLeft = MKMapPointForCoordinate(annotations[0].coordinate)
-//            let topRight = MKMapPointForCoordinate(annotations[1].coordinate)
-//            let bottomLeft = MKMapPointForCoordinate(annotations[2].coordinate)
-//            let bottomRight = MKMapPointForCoordinate(annotations[3].coordinate)
-//            
-//            let rect = MKMapRectMake(topLeft.x,
-//                                     topLeft.y,
-//                                     fabs(topLeft.x-topRight.x),
-//                                     fabs(topLeft.y - bottomLeft.y))
-            let overlay = MKPolygon(coordinates: annotations.map({ $0.coordinate }), count: 4)
+            let overlay = FieldOverlay(coordinates: annotations.map({ $0.coordinate }), count: 4)
             mapView.addOverlay(overlay)
         }
     }
     
-    // MARK: - MKMapViewDelegate
+    // MARK: - MKMapViewDelegate (objc delegate methods can't be in extensions)
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        var annotationView: FieldMapAnnotationView? = mapView.dequeueReusableAnnotationViewWithIdentifier("FieldMapAnnotationView") as? FieldMapAnnotationView
+        if (annotationView == nil) {
+            annotationView = FieldMapAnnotationView(annotation: annotation, delegate: self)
+        } else {
+            annotationView!.annotation = annotation
+        }
+        return annotationView
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        print("selected")
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        switch newState {
+        case .Starting:
+            view.dragState = .Dragging
+        case .Ending, .Canceling:
+            view.dragState = .None
+            for overlay in mapView.overlays {
+//                let renderer = mapView.rendererForOverlay(overlay)
+//                renderer?.setNeedsDisplay()
+                mapView.removeOverlay(overlay)
+                mapView.addOverlay(overlay)
+            }
+        default: break
+        }
+    }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolygonRenderer(overlay: overlay)
+        let renderer = FieldOverlayRenderer(overlay: overlay)
         renderer.fillColor = UIColor.purpleColor()
         return renderer
+    }
+    
+    
+}
+
+extension MapSetupViewController: LongPressSelectableDelegate {
+    func onLongPressConfirm() {
+        print("long press happened")
     }
 }

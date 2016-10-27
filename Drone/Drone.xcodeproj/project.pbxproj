@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4587F701D95812600B928F1 /* BabyMoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4587F6F1D95812600B928F1 /* BabyMoodTests.swift */; };
-		D4587F7B1D95812600B928F1 /* BabyMoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4587F7A1D95812600B928F1 /* BabyMoodUITests.swift */; };
+		D4587F701D95812600B928F1 /* DroneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4587F6F1D95812600B928F1 /* DroneTests.swift */; };
+		D4587F7B1D95812600B928F1 /* DroneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4587F7A1D95812600B928F1 /* DroneUITests.swift */; };
 		D4587FB21D96E07400B928F1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FAD1D96E07400B928F1 /* ReactiveCocoa.framework */; };
 		D4587FB51D96E07500B928F1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FB01D96E07400B928F1 /* Result.framework */; };
 		D4587FB61D96E07500B928F1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FB11D96E07400B928F1 /* SnapKit.framework */; };
@@ -56,14 +56,14 @@
 			containerPortal = D4587F4D1D95812600B928F1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D4587F541D95812600B928F1;
-			remoteInfo = BabyMood;
+			remoteInfo = Drone;
 		};
 		D4587F771D95812600B928F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D4587F4D1D95812600B928F1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D4587F541D95812600B928F1;
-			remoteInfo = BabyMood;
+			remoteInfo = Drone;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -84,10 +84,10 @@
 /* Begin PBXFileReference section */
 		D4587F551D95812600B928F1 /* Drone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4587F6B1D95812600B928F1 /* DroneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4587F6F1D95812600B928F1 /* BabyMoodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMoodTests.swift; sourceTree = "<group>"; };
+		D4587F6F1D95812600B928F1 /* DroneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneTests.swift; sourceTree = "<group>"; };
 		D4587F711D95812600B928F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4587F761D95812600B928F1 /* DroneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DroneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4587F7A1D95812600B928F1 /* BabyMoodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyMoodUITests.swift; sourceTree = "<group>"; };
+		D4587F7A1D95812600B928F1 /* DroneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroneUITests.swift; sourceTree = "<group>"; };
 		D4587F7C1D95812600B928F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4587FAD1D96E07400B928F1 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		D4587FB01D96E07400B928F1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
@@ -214,27 +214,27 @@
 				D4587F881D95838900B928F1 /* Impl */,
 			);
 			name = Drone;
-			path = BabyMood;
+			path = Drone;
 			sourceTree = "<group>";
 		};
 		D4587F6E1D95812600B928F1 /* DroneTests */ = {
 			isa = PBXGroup;
 			children = (
-				D4587F6F1D95812600B928F1 /* BabyMoodTests.swift */,
+				D4587F6F1D95812600B928F1 /* DroneTests.swift */,
 				D4587F711D95812600B928F1 /* Info.plist */,
 			);
 			name = DroneTests;
-			path = BabyMoodTests;
+			path = DroneTests;
 			sourceTree = "<group>";
 		};
 		D4587F791D95812600B928F1 /* DroneUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D4587F7A1D95812600B928F1 /* BabyMoodUITests.swift */,
+				D4587F7A1D95812600B928F1 /* DroneUITests.swift */,
 				D4587F7C1D95812600B928F1 /* Info.plist */,
 			);
 			name = DroneUITests;
-			path = BabyMoodUITests;
+			path = DroneUITests;
 			sourceTree = "<group>";
 		};
 		D4587F881D95838900B928F1 /* Impl */ = {
@@ -372,7 +372,7 @@
 			dependencies = (
 			);
 			name = Drone;
-			productName = BabyMood;
+			productName = Drone;
 			productReference = D4587F551D95812600B928F1 /* Drone.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -390,7 +390,7 @@
 				D4587F6D1D95812600B928F1 /* PBXTargetDependency */,
 			);
 			name = DroneTests;
-			productName = BabyMoodTests;
+			productName = DroneTests;
 			productReference = D4587F6B1D95812600B928F1 /* DroneTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -408,7 +408,7 @@
 				D4587F781D95812600B928F1 /* PBXTargetDependency */,
 			);
 			name = DroneUITests;
-			productName = BabyMoodUITests;
+			productName = DroneUITests;
 			productReference = D4587F761D95812600B928F1 /* DroneUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -534,7 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4587F701D95812600B928F1 /* BabyMoodTests.swift in Sources */,
+				D4587F701D95812600B928F1 /* DroneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4587F7B1D95812600B928F1 /* BabyMoodUITests.swift in Sources */,
+				D4587F7B1D95812600B928F1 /* DroneUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

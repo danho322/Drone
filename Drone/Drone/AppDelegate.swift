@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         // Window, services, root VC
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
+
         // Root view controller
         services = ViewModelServices(delegate: self)
         let vm = LoginViewModel(services: services!)
@@ -34,8 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
         
-        FIRApp.configure()
-        DJISDKManager.registerApp("8e89542e23d22645274bd708", withDelegate: self)
+//        FIRApp.configure()
+//        DJISDKManager.registerApp("8e89542e23d22645274bd708", withDelegate: self)
         
         return true
     }
