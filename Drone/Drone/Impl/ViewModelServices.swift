@@ -15,6 +15,24 @@ protocol ViewModelServicesDelegate: class {
 protocol ViewModelServicesProtocol {
     func push(viewModel: ViewModelProtocol)
     func pop(viewModel: ViewModelProtocol)
+    var user: User? { get }
+}
+
+struct User {
+    
+    let uid: String
+    let email: String
+    
+    init(authData: FIRUser) {
+        uid = authData.uid
+        email = authData.email!
+    }
+    
+    init(uid: String, email: String) {
+        self.uid = uid
+        self.email = email
+    }
+    
 }
 
 class ViewModelServices: NSObject, ViewModelServicesProtocol {
@@ -23,6 +41,7 @@ class ViewModelServices: NSObject, ViewModelServicesProtocol {
 //    let todo: TodoServiceProtocol
 //    let date: DateServiceProtocol
     
+    var user: User?
     private weak var delegate: ViewModelServicesDelegate?
     
     // MARK: API
@@ -32,6 +51,12 @@ class ViewModelServices: NSObject, ViewModelServicesProtocol {
 //        self.todo = TodoService()
 //        self.date = DateService()
         super.init()
+        
+        FIRAuth.auth()?.addAuthStateDidChangeListener() { [unowned self] auth, user in
+            if let user = user {
+                self.user = User(authData: user)
+            }
+        }
     }
     
     func push(viewModel: ViewModelProtocol) {

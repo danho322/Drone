@@ -107,7 +107,12 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
         let press = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         press.minimumPressDuration = 1.0
         view.addGestureRecognizer(press)
-        
+
+        viewModel.mapRegionOutput.producer.startWithNext() { [unowned self] region in
+            if let region = region {
+                self.mapView.setRegion(region, animated: true)
+            }
+        }
     }
     
     func handleLongPress(gestureRecognizer: UIGestureRecognizer) {
@@ -170,6 +175,11 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
         return renderer
     }
     
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let mapRegion = mapView.region
+        print("region \(mapRegion)")
+        viewModel.mapRegionInput.value = mapRegion
+    }
     
 }
 

@@ -28,9 +28,9 @@ class LoginViewModel: ViewModel {
 //        switchRegisterCocoaAction = CocoaAction(switchRegisterAction, input: ())
         
         super.init(services: services)
-        FIRAuth.auth()?.addAuthStateDidChangeListener() { auth, user in
+        FIRAuth.auth()?.addAuthStateDidChangeListener() { [unowned self] auth, user in
             if let user = user {
-                
+                self.navigateToMap()
             }
         }
     }
@@ -58,21 +58,24 @@ class LoginViewModel: ViewModel {
     }
     
     func executeLogin() {
-        FIRAuth.auth()?.signInWithEmail(emailInput.value, password: passwordInput.value) { user, error in
+        FIRAuth.auth()?.signInWithEmail(emailInput.value, password: passwordInput.value) { [unowned self] user, error in
             if let user = user {
                 print("logged into user \(user)")
+                self.navigateToMap()
             }
         }
     }
     
     func executeSignup() {
+        FIRAuth.auth()?.createUserWithEmail(emailInput.value, password: passwordInput.value) { user, error in
+            if error == nil {
+                self.executeLogin()
+            }
+        }
+    }
+    
+    func navigateToMap() {
         let vm = MapSetupViewModel(services: services)
         services.push(vm)
-        
-//        FIRAuth.auth()?.createUserWithEmail(emailInput.value, password: passwordInput.value) { user, error in
-//            if error == nil {
-//                self.executeLogin()
-//            }
-//        }
     }
 }

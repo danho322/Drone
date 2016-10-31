@@ -21,6 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate
     private var navigationStack: [UIViewController] = []
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        
+        FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
+        DJISDKManager.registerApp("8e89542e23d22645274bd708", withDelegate: self)
+
+        
         // Window, services, root VC
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
@@ -28,14 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewModelServicesDelegate
         services = ViewModelServices(delegate: self)
         let vm = LoginViewModel(services: services!)
         services?.push(vm)
+//        let vm = MapSetupViewModel(services: services!)
+//        services?.push(vm)
         
         let rootNavigationController = UINavigationController()
         navigationStack.push(rootNavigationController)
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
         
-//        FIRApp.configure()
-//        DJISDKManager.registerApp("8e89542e23d22645274bd708", withDelegate: self)
         
         return true
     }
