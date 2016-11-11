@@ -8,11 +8,17 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
-class FieldBoundaryAnnotation: NSObject, MKAnnotation {
+enum BoundaryType {
+    case Field, Flight
+}
+
+class BoundaryAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var type: BoundaryType = .Field
     
     init(coordinate: CLLocationCoordinate2D) {
         self.coordinate = coordinate
@@ -94,14 +100,19 @@ class FieldOverlayRenderer: MKPolygonRenderer {
     }
 }
 
-class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapViewDelegate {
+class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    
+    let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        mapView.showsUserLocation = true
         mapView.delegate = self
         
         let press = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
@@ -110,8 +121,18 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
 
         viewModel.mapRegionOutput.producer.startWithNext() { [unowned self] region in
             if let region = region {
-                self.mapView.setRegion(region, animated: true)
+                //self.mapView.setRegion(region, animated: true)
             }
+        }
+        
+        viewModel.annotationArrayOutput.producer.startWithNext() { [unowned self] annotations in
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            self.mapView.addAnnotations(annotations)
+        }
+        
+        viewModel.overlayArrayOutput.producer.startWithNext() { [unowned self] overlays in
+            self.mapView.removeOverlays(self.mapView.overlays)
+            self.mapView.addOverlays(overlays)
         }
     }
     
@@ -122,24 +143,17 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
         
         let touchPoint = gestureRecognizer.locationInView(mapView)
         let touchMapCoordinate = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
-        
-        let annot = FieldBoundaryAnnotation(coordinate: touchMapCoordinate)
-        addAnnotation(annot)
-    }
-    
-    func addAnnotation(annotation: FieldBoundaryAnnotation) {
-        mapView.addAnnotation(annotation)
-        
-        let annotations = mapView.annotations
-        if (annotations.count == 4) {
-            let overlay = FieldOverlay(coordinates: annotations.map({ $0.coordinate }), count: 4)
-            mapView.addOverlay(overlay)
-        }
+        viewModel.handleMapPress(touchMapCoordinate)
     }
     
     // MARK: - MKMapViewDelegate (objc delegate methods can't be in extensions)
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
         var annotationView: FieldMapAnnotationView? = mapView.dequeueReusableAnnotationViewWithIdentifier("FieldMapAnnotationView") as? FieldMapAnnotationView
         if (annotationView == nil) {
             annotationView = FieldMapAnnotationView(annotation: annotation, delegate: self)
@@ -181,7 +195,33 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
         viewModel.mapRegionInput.value = mapRegion
     }
     
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+        print("\(viewModel.mapRegionOutput.value), \(userLocation.location?.coordinate)")
+        if viewModel.mapRegionOutput.value == nil && userLocation.location != nil {
+            mapView.region = MKCoordinateRegionMake(userLocation.location!.coordinate,
+                                                    MKCoordinateSpanMake(0.1, 0.1))
+        }
+    }
+    
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        
+//        self.locationManager.stopUpdatingLocation()
+//        
+//        let latestLocation = locations.last
+//        
+//        if viewModel.mapRegionOutput.value == nil && latestLocation != nil {
+//            mapView.region = MKCoordinateRegionMake(latestLocation!.coordinate,
+//                                   MKCoordinateSpanMake(0.1, 0.1))
+//        }
+//        
+//        let latitude = String(format: "%.4f", latestLocation!.coordinate.latitude)
+//        let longitude = String(format: "%.4f", latestLocation!.coordinate.longitude)
+//        
+//        print("Latitude: \(latitude)")
+//        print("Longitude: \(longitude)")
+//    }
 }
+
 
 extension MapSetupViewController: LongPressSelectableDelegate {
     func onLongPressConfirm() {

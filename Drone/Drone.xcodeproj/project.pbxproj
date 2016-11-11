@@ -48,6 +48,7 @@
 		D4F531531DA9B21F0065CA56 /* NavigationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531511DA9B21F0065CA56 /* NavigationEvent.swift */; };
 		D4F531541DA9B21F0065CA56 /* ViewModelServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F531521DA9B21F0065CA56 /* ViewModelServices.swift */; };
 		D4F531561DA9B23B0065CA56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4F531551DA9B23B0065CA56 /* Assets.xcassets */; };
+		D4FF0D401DC84A90000AB919 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4FF0D3F1DC84A90000AB919 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		D4F531511DA9B21F0065CA56 /* NavigationEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationEvent.swift; path = Drone/Impl/NavigationEvent.swift; sourceTree = SOURCE_ROOT; };
 		D4F531521DA9B21F0065CA56 /* ViewModelServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewModelServices.swift; path = Drone/Impl/ViewModelServices.swift; sourceTree = SOURCE_ROOT; };
 		D4F531551DA9B23B0065CA56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Drone/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		D4FF0D3F1DC84A90000AB919 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FF0D401DC84A90000AB919 /* CoreLocation.framework in Frameworks */,
 				D4CDCDEC1DADFE2F0065953A /* MapKit.framework in Frameworks */,
 				D4CDCDD51DA9BE480065953A /* FirebaseDatabase.framework in Frameworks */,
 				D4CDCDD31DA9BE3D0065953A /* GoogleNetworkingUtilities.framework in Frameworks */,
@@ -213,7 +216,6 @@
 				D4587F8D1D95848500B928F1 /* Base Classes */,
 				D4587F881D95838900B928F1 /* Impl */,
 			);
-			name = Drone;
 			path = Drone;
 			sourceTree = "<group>";
 		};
@@ -223,7 +225,6 @@
 				D4587F6F1D95812600B928F1 /* DroneTests.swift */,
 				D4587F711D95812600B928F1 /* Info.plist */,
 			);
-			name = DroneTests;
 			path = DroneTests;
 			sourceTree = "<group>";
 		};
@@ -233,7 +234,6 @@
 				D4587F7A1D95812600B928F1 /* DroneUITests.swift */,
 				D4587F7C1D95812600B928F1 /* Info.plist */,
 			);
-			name = DroneUITests;
 			path = DroneUITests;
 			sourceTree = "<group>";
 		};
@@ -258,6 +258,7 @@
 		D4587F921D96DA5600B928F1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4FF0D3F1DC84A90000AB919 /* CoreLocation.framework */,
 				D4CDCDEB1DADFE2F0065953A /* MapKit.framework */,
 				D4CDCDE31DAAD89E0065953A /* SwiftLCS.framework */,
 				D4CDCDDB1DA9D2CE0065953A /* DJISDK.framework */,

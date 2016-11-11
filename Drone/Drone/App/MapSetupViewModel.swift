@@ -90,6 +90,8 @@ class MapSetupViewModel: ViewModel {
     // Outputs
     // field type
     let mapRegionOutput: MutableProperty<MKCoordinateRegion?> = MutableProperty(nil)
+    let annotationArrayOutput: MutableProperty<[BoundaryAnnotation]> = MutableProperty([])
+    let overlayArrayOutput: MutableProperty<[FieldOverlay]> = MutableProperty([])
     
     // Actions
     // change field type
@@ -98,21 +100,16 @@ class MapSetupViewModel: ViewModel {
     // Firebase
     var ref: FIRDatabaseReference?
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override init(services: ViewModelServicesProtocol) {
         super.init(services: services)
         
         if let user = services.user {
             ref = FIRDatabase.database().referenceWithPath("\(user.uid)-saved-data")
         }
-        /*
-        func toAnyObject() -> AnyObject {
-            return [
-                "centerLat": centerLat,
-                "centerLng": centerLng,
-                "deltaLat": deltaLat,
-                "deltaLng": deltaLng
-            ]
-        }*/
 
         let mapDataKey = "mapCoords"
         let mapDataRef = self.ref?.child(mapDataKey)
@@ -129,19 +126,31 @@ class MapSetupViewModel: ViewModel {
                 let deltaLat = deltaLat,
                 let deltaLng = deltaLng {
                 let data = MapData(centerLat: centerLat, centerLng: centerLng, deltaLat: deltaLat, deltaLng: deltaLng)
-                self.mapRegionOutput.value = MKCoordinateRegionMake(CLLocationCoordinate2DMake(centerLat.doubleValue, centerLng.doubleValue),
-                    MKCoordinateSpanMake(deltaLat.doubleValue, deltaLng.doubleValue))
+//                self.mapRegionOutput.value = MKCoordinateRegionMake(CLLocationCoordinate2DMake(centerLat.doubleValue, centerLng.doubleValue),
+//                    MKCoordinateSpanMake(deltaLat.doubleValue, deltaLng.doubleValue))
+            } else {
+                
             }
         })
         
         disposables.append(NSNotificationCenter.defaultCenter().rac_addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil).subscribeNext({ [unowned self] next in
             // save map coords
+            print("\(next)")
             if let currentRegion = self.mapRegionInput.value {
                 self.saveMapCoords(currentRegion)
             }
         }))
+        
+        disposables.append(annotationArrayOutput.producer.startWithNext({ [unowned self] annotations in
+            if (annotations.count == 4) {
+                let overlay = FieldOverlay(coordinates: annotations.map({ $0.coordinate }), count: 4)
+                var currentOverlays = self.overlayArrayOutput.value
+                currentOverlays.append(overlay)
+                self.overlayArrayOutput.value = currentOverlays
+            }
+        }))
     }
-    
+
     func saveMapCoords(region: MKCoordinateRegion) {
         let mapDataKey = "mapCoords"
         let data = mapDataForRegion(region)
@@ -159,4 +168,16 @@ class MapSetupViewModel: ViewModel {
         let mapData = MapData(centerLat: lat, centerLng: lng, deltaLat: latDelta, deltaLng: lngDelta)
         return mapData
     }
+    
+    // pragma mark - Annotations
+    
+    func handleMapPress(coordinate: CLLocationCoordinate2D) {
+        let annotation = BoundaryAnnotation(coordinate: coordinate)
+        var currentAnnotations = annotationArrayOutput.value
+        currentAnnotations.append(annotation)
+        annotationArrayOutput.value = currentAnnotations
+    }
+    
+    // output: annotation array
+    // output: overlay array
 }

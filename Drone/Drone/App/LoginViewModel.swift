@@ -20,6 +20,8 @@ class LoginViewModel: ViewModel {
     // Actions
 //    let switchRegisterAction: Action<(), Void, NoError>
 //    let switchRegisterCocoaAction: CocoaAction
+    
+    internal var didPushMap: Bool = false
 
     override init(services: ViewModelServicesProtocol) {
 //        switchRegisterAction = Action() { () -> SignalProducer<Void, NoError> in
@@ -30,6 +32,7 @@ class LoginViewModel: ViewModel {
         super.init(services: services)
         FIRAuth.auth()?.addAuthStateDidChangeListener() { [unowned self] auth, user in
             if let user = user {
+                print("user: \(user): \(auth)")
                 self.navigateToMap()
             }
         }
@@ -75,6 +78,11 @@ class LoginViewModel: ViewModel {
     }
     
     func navigateToMap() {
+        if (didPushMap) {
+            return
+        }
+        didPushMap = true
+        
         let vm = MapSetupViewModel(services: services)
         services.push(vm)
     }
