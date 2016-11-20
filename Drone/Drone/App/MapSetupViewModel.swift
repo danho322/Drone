@@ -92,6 +92,7 @@ class MapSetupViewModel: ViewModel {
     let mapRegionOutput: MutableProperty<MKCoordinateRegion?> = MutableProperty(nil)
     let annotationArrayOutput: MutableProperty<[BoundaryAnnotation]> = MutableProperty([])
     let overlayArrayOutput: MutableProperty<[FieldOverlay]> = MutableProperty([])
+    let labelOutput: MutableProperty<String> = MutableProperty("")
     
     // Actions
     // change field type
@@ -133,6 +134,10 @@ class MapSetupViewModel: ViewModel {
             }
         })
         
+        setupBindings()
+    }
+    
+    func setupBindings() {
         disposables.append(NSNotificationCenter.defaultCenter().rac_addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil).subscribeNext({ [unowned self] next in
             // save map coords
             print("\(next)")
@@ -142,12 +147,23 @@ class MapSetupViewModel: ViewModel {
         }))
         
         disposables.append(annotationArrayOutput.producer.startWithNext({ [unowned self] annotations in
-            if (annotations.count == 4) {
-                let overlay = FieldOverlay(coordinates: annotations.map({ $0.coordinate }), count: 4)
-                var currentOverlays = self.overlayArrayOutput.value
+            let fieldAnnotations = annotations.filter({ $0.type == .Field })
+            let flightAnnotations = annotations.filter({ $0.type == .Flight })
+            
+            var currentOverlays: [FieldOverlay] = []
+            if (fieldAnnotations.count == 4) {
+                let overlay = FieldOverlay(coordinates: fieldAnnotations.map({ $0.coordinate }), count: 4)
+                overlay.type = .Field
                 currentOverlays.append(overlay)
-                self.overlayArrayOutput.value = currentOverlays
             }
+            
+            if (flightAnnotations.count == 4) {
+                let overlay = FieldOverlay(coordinates: flightAnnotations.map({ $0.coordinate }), count: 4)
+                overlay.type = .Flight
+                currentOverlays.append(overlay)
+            }
+            
+            self.overlayArrayOutput.value = currentOverlays
         }))
     }
 
@@ -172,10 +188,31 @@ class MapSetupViewModel: ViewModel {
     // pragma mark - Annotations
     
     func handleMapPress(coordinate: CLLocationCoordinate2D) {
-        let annotation = BoundaryAnnotation(coordinate: coordinate)
         var currentAnnotations = annotationArrayOutput.value
-        currentAnnotations.append(annotation)
-        annotationArrayOutput.value = currentAnnotations
+        let currentType = currentBoundaryType(currentAnnotations)
+        if currentType != .None {
+            let annotation = BoundaryAnnotation(coordinate: coordinate)
+            annotation.type = currentType
+            currentAnnotations.append(annotation)
+            annotationArrayOutput.value = currentAnnotations
+            
+            let nextType = currentBoundaryType(currentAnnotations)
+            var labelString = "\(currentAnnotations.count) annotations, place a \(nextType.rawValue) marker"
+            if nextType == .None {
+                labelString = "Drag markers to adjust boundaries"
+            }
+            self.labelOutput.value = labelString
+        }
+    }
+    
+    func currentBoundaryType(currentAnnotations: [BoundaryAnnotation]) -> BoundaryType {
+        if currentAnnotations.count < 4 {
+            return .Field
+        } else if currentAnnotations.count < 8 {
+            return .Flight
+        } else {
+            return .None
+        }
     }
     
     // output: annotation array

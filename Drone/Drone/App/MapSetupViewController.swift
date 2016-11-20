@@ -10,8 +10,10 @@ import UIKit
 import MapKit
 import CoreLocation
 
-enum BoundaryType {
-    case Field, Flight
+enum BoundaryType: String {
+    case Field = "Field"
+    case Flight = "Flight"
+    case None = "None"
 }
 
 class BoundaryAnnotation: NSObject, MKAnnotation {
@@ -86,6 +88,8 @@ class FieldMapAnnotationView: MKAnnotationView, LongPressSelectable {
 }
 
 class FieldOverlay: MKPolygon {
+    var type: BoundaryType = .Field
+    
 //    override var coordinate: CLLocationCoordinate2D {
 //        return self.coordinate
 //    }
@@ -103,8 +107,11 @@ class FieldOverlayRenderer: MKPolygonRenderer {
 class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    let locationManager = CLLocationManager()
+    @IBOutlet weak var outputLabel: UILabel!
 
+    let locationManager = CLLocationManager()
+    var didUpdateToUserLocation = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -133,6 +140,10 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
         viewModel.overlayArrayOutput.producer.startWithNext() { [unowned self] overlays in
             self.mapView.removeOverlays(self.mapView.overlays)
             self.mapView.addOverlays(overlays)
+        }
+        
+        viewModel.labelOutput.producer.startWithNext() { [unowned self] text in
+            self.outputLabel.text = text
         }
     }
     
@@ -173,14 +184,22 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
             view.dragState = .Dragging
         case .Ending, .Canceling:
             view.dragState = .None
+            print("coordinate: \(view.annotation?.coordinate)")
+            refreshOverlays()
+            /*
             for overlay in mapView.overlays {
 //                let renderer = mapView.rendererForOverlay(overlay)
 //                renderer?.setNeedsDisplay()
                 mapView.removeOverlay(overlay)
                 mapView.addOverlay(overlay)
             }
+            */
         default: break
         }
+    }
+    
+    func refreshOverlays() {
+        viewModel.overlayArrayOutput.value = viewModel.overlayArrayOutput.value
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
@@ -196,30 +215,17 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
     }
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+        if didUpdateToUserLocation {
+            return
+        }
+        didUpdateToUserLocation = true
+        
         print("\(viewModel.mapRegionOutput.value), \(userLocation.location?.coordinate)")
         if viewModel.mapRegionOutput.value == nil && userLocation.location != nil {
             mapView.region = MKCoordinateRegionMake(userLocation.location!.coordinate,
                                                     MKCoordinateSpanMake(0.1, 0.1))
         }
     }
-    
-//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        
-//        self.locationManager.stopUpdatingLocation()
-//        
-//        let latestLocation = locations.last
-//        
-//        if viewModel.mapRegionOutput.value == nil && latestLocation != nil {
-//            mapView.region = MKCoordinateRegionMake(latestLocation!.coordinate,
-//                                   MKCoordinateSpanMake(0.1, 0.1))
-//        }
-//        
-//        let latitude = String(format: "%.4f", latestLocation!.coordinate.latitude)
-//        let longitude = String(format: "%.4f", latestLocation!.coordinate.longitude)
-//        
-//        print("Latitude: \(latitude)")
-//        print("Longitude: \(longitude)")
-//    }
 }
 
 
