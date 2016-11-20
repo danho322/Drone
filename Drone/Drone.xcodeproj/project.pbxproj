@@ -12,6 +12,7 @@
 		D4587FB21D96E07400B928F1 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FAD1D96E07400B928F1 /* ReactiveCocoa.framework */; };
 		D4587FB51D96E07500B928F1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FB01D96E07400B928F1 /* Result.framework */; };
 		D4587FB61D96E07500B928F1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4587FB11D96E07400B928F1 /* SnapKit.framework */; };
+		D4B6955C1DE13A8D008595CE /* BoundaryAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B6955B1DE13A8D008595CE /* BoundaryAnnotation.swift */; };
 		D4CDCD761DA9B3200065953A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CDCD721DA9B3200065953A /* LaunchScreen.storyboard */; };
 		D4CDCD771DA9B3200065953A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4CDCD741DA9B3200065953A /* Main.storyboard */; };
 		D4CDCDB71DA9B70D0065953A /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CDCDB61DA9B70D0065953A /* libicucore.tbd */; };
@@ -93,6 +94,7 @@
 		D4587FAD1D96E07400B928F1 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = ../Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		D4587FB01D96E07400B928F1 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		D4587FB11D96E07400B928F1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		D4B6955B1DE13A8D008595CE /* BoundaryAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoundaryAnnotation.swift; path = App/BoundaryAnnotation.swift; sourceTree = "<group>"; };
 		D4CDCD731DA9B3200065953A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Drone/Base.lproj/LaunchScreen.storyboard; sourceTree = SOURCE_ROOT; };
 		D4CDCD751DA9B3200065953A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Drone/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		D4CDCDB61DA9B70D0065953A /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -351,6 +353,7 @@
 			children = (
 				D4CDCDE71DADDF320065953A /* MapSetupViewController.swift */,
 				D4CDCDE91DADDF690065953A /* MapSetupViewModel.swift */,
+				D4B6955B1DE13A8D008595CE /* BoundaryAnnotation.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				D4F531421DA9B1CE0065CA56 /* TabViewModel.swift in Sources */,
 				D4F5314F1DA9B2060065CA56 /* ReactiveViewController.swift in Sources */,
 				D4CDCDE01DAA9F9E0065953A /* LoginViewController.swift in Sources */,
+				D4B6955C1DE13A8D008595CE /* BoundaryAnnotation.swift in Sources */,
 				D4F531501DA9B2060065CA56 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

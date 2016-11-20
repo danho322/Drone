@@ -105,6 +105,12 @@ class MapSetupViewModel: ViewModel {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    struct FirebaseDataKeys {
+        static let MapCoords = "mapCoords"
+        static let AnnotationsArray = "annotations"
+        static let AnnotationChild = "annotation"
+    }
+    
     override init(services: ViewModelServicesProtocol) {
         super.init(services: services)
         
@@ -112,26 +118,36 @@ class MapSetupViewModel: ViewModel {
             ref = FIRDatabase.database().referenceWithPath("\(user.uid)-saved-data")
         }
 
-        let mapDataKey = "mapCoords"
-        let mapDataRef = self.ref?.child(mapDataKey)
-        
+        let mapDataRef = self.ref?.child(FirebaseDataKeys.MapCoords)
         mapDataRef?.observeSingleEventOfType(.Value, withBlock: { [unowned self] snapshot in
-            let value = snapshot.value as? NSDictionary
-            let centerLat = value?["centerLat"] as? NSNumber
-            let centerLng = value?["centerLng"] as? NSNumber
-            let deltaLat = value?["deltaLat"] as? NSNumber
-            let deltaLng = value?["deltaLng"] as? NSNumber
-            
-            if let centerLat = centerLat,
-                let centerLng = centerLng,
-                let deltaLat = deltaLat,
-                let deltaLng = deltaLng {
-                let data = MapData(centerLat: centerLat, centerLng: centerLng, deltaLat: deltaLat, deltaLng: deltaLng)
-//                self.mapRegionOutput.value = MKCoordinateRegionMake(CLLocationCoordinate2DMake(centerLat.doubleValue, centerLng.doubleValue),
-//                    MKCoordinateSpanMake(deltaLat.doubleValue, deltaLng.doubleValue))
-            } else {
+            if let value = snapshot.value as? NSDictionary {
+                let centerLat = value["centerLat"] as? NSNumber
+                let centerLng = value["centerLng"] as? NSNumber
+                let deltaLat = value["deltaLat"] as? NSNumber
+                let deltaLng = value["deltaLng"] as? NSNumber
                 
+                if let centerLat = centerLat,
+                    let centerLng = centerLng,
+                    let deltaLat = deltaLat,
+                    let deltaLng = deltaLng {
+                    //let data = MapData(centerLat: centerLat, centerLng: centerLng, deltaLat: deltaLat, deltaLng: deltaLng)
+                    self.mapRegionOutput.value = MKCoordinateRegionMake(CLLocationCoordinate2DMake(centerLat.doubleValue, centerLng.doubleValue),
+                        MKCoordinateSpanMake(deltaLat.doubleValue, deltaLng.doubleValue))
+                } else {
+                    
+                }
             }
+        })
+        
+        let annotationsDataRef = self.ref?.child(FirebaseDataKeys.AnnotationsArray)
+        annotationsDataRef?.queryOrderedByChild(FirebaseDataKeys.AnnotationChild).observeEventType(.ChildAdded, withBlock: { [unowned self] snapshot in
+            var savedAnnotations: [BoundaryAnnotation] = []
+            if let value = snapshot.value as? NSDictionary {
+                print("found annotation: \(value)")
+                let annotation = BoundaryAnnotation(snapshot: snapshot)
+                savedAnnotations.append(annotation)
+            }
+            self.annotationArrayOutput.value = savedAnnotations
         })
         
         setupBindings()
@@ -144,6 +160,8 @@ class MapSetupViewModel: ViewModel {
             if let currentRegion = self.mapRegionInput.value {
                 self.saveMapCoords(currentRegion)
             }
+            
+            self.saveAnnotations(self.annotationArrayOutput.value)
         }))
         
         disposables.append(annotationArrayOutput.producer.startWithNext({ [unowned self] annotations in
@@ -168,11 +186,19 @@ class MapSetupViewModel: ViewModel {
     }
 
     func saveMapCoords(region: MKCoordinateRegion) {
-        let mapDataKey = "mapCoords"
+        let mapDataKey = FirebaseDataKeys.MapCoords
         let data = mapDataForRegion(region)
-        let mapCorodsRef = self.ref?.child(mapDataKey)
-        mapCorodsRef?.setValue(data.toAnyObject())
-        
+        let mapCoordsRef = self.ref?.child(mapDataKey)
+        mapCoordsRef?.setValue(data.toAnyObject())
+    }
+    
+    func saveAnnotations(annotations: [BoundaryAnnotation]) {
+        let annotationsRef = self.ref?.child(FirebaseDataKeys.AnnotationsArray)
+        annotationsRef?.removeValue()
+        for annotation in annotations {
+            let thisAnnotationRef = annotationsRef?.childByAutoId()
+            thisAnnotationRef?.setValue(annotation.toAnyObject())
+        }
     }
     
     func mapDataForRegion(region: MKCoordinateRegion) -> MapData {

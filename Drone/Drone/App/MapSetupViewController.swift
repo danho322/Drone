@@ -10,24 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-enum BoundaryType: String {
-    case Field = "Field"
-    case Flight = "Flight"
-    case None = "None"
-}
-
-class BoundaryAnnotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var subtitle: String?
-    var type: BoundaryType = .Field
-    
-    init(coordinate: CLLocationCoordinate2D) {
-        self.coordinate = coordinate
-        super.init()
-    }
-}
-
 protocol LongPressSelectableDelegate {
     func onLongPressConfirm()
 }
@@ -127,8 +109,9 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
         view.addGestureRecognizer(press)
 
         viewModel.mapRegionOutput.producer.startWithNext() { [unowned self] region in
+            self.didUpdateToUserLocation = true
             if let region = region {
-                //self.mapView.setRegion(region, animated: true)
+                self.mapView.setRegion(region, animated: true)
             }
         }
         
@@ -164,13 +147,13 @@ class MapSetupViewController: ReactiveViewController<MapSetupViewModel>, MKMapVi
         if annotation is MKUserLocation {
             return nil
         }
-        
-        var annotationView: FieldMapAnnotationView? = mapView.dequeueReusableAnnotationViewWithIdentifier("FieldMapAnnotationView") as? FieldMapAnnotationView
-        if (annotationView == nil) {
-            annotationView = FieldMapAnnotationView(annotation: annotation, delegate: self)
-        } else {
-            annotationView!.annotation = annotation
-        }
+
+        //var annotationView: FieldMapAnnotationView? = mapView.dequeueReusableAnnotationViewWithIdentifier("FieldMapAnnotationView") as? FieldMapAnnotationView
+        //if (annotationView == nil) {
+        let annotationView = FieldMapAnnotationView(annotation: annotation, delegate: self)
+        //} else {
+        //    annotationView!.annotation = annotation
+        //}
         return annotationView
     }
     
